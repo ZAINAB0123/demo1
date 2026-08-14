@@ -18,10 +18,13 @@ public class Task extends BaseEntity{
     private String description;
     @Enumerated(EnumType.STRING)
     private TaskStatus status;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "customer_id")
+    private Customer customer;
 public Task(String title, String description){
     this.title = title;
     this.description = description;
-    this.status = TaskStatus.IN_PROGRESS;
+    this.status = TaskStatus.NEW;
 }
 
 

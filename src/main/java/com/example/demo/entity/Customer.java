@@ -21,13 +21,28 @@ public class Customer extends BaseEntity {
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private CustomerStatus status;
-    @OneToMany(mappedBy = "customer")
+    @OneToMany(mappedBy = "customer",
+    cascade = CascadeType.ALL,
+    orphanRemoval = true)
     private List<Task> tasks = new ArrayList<>();
+    @OneToMany(mappedBy = "customer",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true)
+    private List<Deal> deals = new ArrayList<>();
     public Customer(String name, String email, String phone) {
         this.name = name;
         this.email = email;
         this.phone = phone;
         this.status = CustomerStatus.ACTIVE;
+    }
+    public void addDeal(Deal deal) {
+        this.deals.add(deal);
+        deal.setCustomer(this);
+
+    }
+    public void removeDeal(Deal deal) {
+        this.deals.remove(deal);
+        deal.setCustomer(null);
     }
  /*   public void updateName(String name) {
         this.name = name;

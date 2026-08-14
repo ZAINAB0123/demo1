@@ -1,17 +1,14 @@
-package com.example.demo.dto;
-
-import com.example.demo.entity.TaskStatus;
-
+package com.example.demo.dto.deal;
+import com.example.demo.entity.DealStatus;
 import java.time.LocalDateTime;
 
-public record TaskResponse(
+public record DealResponse(
         Long id,
         String title,
         String description,
-        TaskStatus status,
+        Double amount,
+        DealStatus status,
         LocalDateTime createdAt,
         Long version
-
 ) {
-
 }

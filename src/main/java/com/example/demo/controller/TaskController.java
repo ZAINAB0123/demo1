@@ -1,8 +1,9 @@
 package com.example.demo.controller;
 
-import com.example.demo.dto.TaskCreateRequest;
-import com.example.demo.dto.TaskResponse;
-import com.example.demo.dto.TaskUpdateRequest;
+import com.example.demo.dto.task.TaskCreateRequest;
+import com.example.demo.dto.task.TaskResponse;
+import com.example.demo.dto.task.TaskWithCustomerResponse;
+import com.example.demo.dto.task.TaskUpdateRequest;
 import com.example.demo.service.TaskService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -41,6 +42,14 @@ public class TaskController {
     public ResponseEntity<List<TaskResponse>> getAllTasks(){
         List<TaskResponse> response = taskService.getAllTasks();
         return ResponseEntity.ok(response);
+    }
+    @GetMapping("/fetch")
+    public ResponseEntity<List<TaskWithCustomerResponse>> getAllTasksFetch(){
+        return ResponseEntity.ok(taskService.getAllTasksFetch());
+    }
+    @GetMapping("/graph")
+    public ResponseEntity<List<TaskWithCustomerResponse>> getAllTasksGraph(){
+        return ResponseEntity.ok(taskService.getAllTasksGraph());
     }
     @DeleteMapping("/{id}")
     public ResponseEntity<TaskResponse> deleteTask(

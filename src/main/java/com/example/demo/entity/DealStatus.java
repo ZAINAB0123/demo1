@@ -1,8 +1,8 @@
 package com.example.demo.entity;
 
-public enum TaskStatus {
+public enum DealStatus {
     NEW,
-    TODO,
     IN_PROGRESS,
-    DONE
+    WON,
+    LOST
 }
