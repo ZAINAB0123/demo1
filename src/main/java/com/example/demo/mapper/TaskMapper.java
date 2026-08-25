@@ -1,7 +1,8 @@
 package com.example.demo.mapper;
 
-import com.example.demo.dto.TaskCreateRequest;
-import com.example.demo.dto.TaskResponse;
+import com.example.demo.dto.task.TaskCreateRequest;
+import com.example.demo.dto.task.TaskResponse;
+import com.example.demo.dto.task.TaskWithCustomerResponse;
 import com.example.demo.entity.Task;
 import org.springframework.stereotype.Component;
 
@@ -30,6 +31,20 @@ public class TaskMapper {
         List<TaskResponse> responseList = new ArrayList<>();
         for (Task task : tasks) {
             responseList.add(toResponse(task));
+        }
+        return responseList;
+    }
+    public TaskWithCustomerResponse toResponse2(Task task) {
+        return new TaskWithCustomerResponse(
+                task.getId(),
+                task.getTitle(),
+                task.getCustomer().getName()
+        );
+    }
+    public List<TaskWithCustomerResponse> toResponseList2(List<Task> tasks) {
+        List<TaskWithCustomerResponse> responseList = new ArrayList<>();
+        for (Task task: tasks){
+            responseList.add(toResponse2(task));
         }
         return responseList;
     }
