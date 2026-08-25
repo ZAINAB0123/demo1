@@ -14,12 +14,12 @@ import lombok.Setter;
 public class Task extends BaseEntity{
     @Column(nullable = false, length = 255)
     private String title;
-    @Lob
+    @Column(columnDefinition = "TEXT")
     private String description;
     @Enumerated(EnumType.STRING)
     private TaskStatus status;
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "customer_id")
+    @JoinColumn(name = "customer_id", nullable = false)
     private Customer customer;
 public Task(String title, String description){
     this.title = title;

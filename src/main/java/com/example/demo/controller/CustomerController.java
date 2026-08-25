@@ -1,12 +1,18 @@
 package com.example.demo.controller;
 
 import com.example.demo.dto.customer.*;
-import com.example.demo.exception.PageSizeException;
+import com.example.demo.entity.CustomerStatus;
 import com.example.demo.service.CustomerService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springdoc.core.annotations.ParameterObject;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,22 +27,29 @@ public class CustomerController {
     private final CustomerService customerService;
 
     @PostMapping
+    @Operation(
+            summary = "Create customer",
+            description = "Creates a new customer"
+    )
+    @ApiResponses({
+            @ApiResponse(responseCode = "201", description = "Customer created"),
+            @ApiResponse(responseCode = "400", description = "Invalid request")
+    })
     public ResponseEntity<CustomerResponse> createCustomer(
             @Valid @RequestBody CustomerCreateRequest request) {
         CustomerResponse customerSave = customerService.createCustomer(request);
         return ResponseEntity.status(HttpStatus.CREATED).body(customerSave);
     }
 
-    @PutMapping("{/id}")
+    @PutMapping("/{id}")
     public ResponseEntity<CustomerResponse> updateCustomer(
-            @PathVariable Long id,
             @Valid @RequestBody CustomerUpdateRequest request
     ) {
-        CustomerResponse customerUpdate = customerService.updateCustomer(id, request);
+        CustomerResponse customerUpdate = customerService.updateCustomer(request);
         return ResponseEntity.ok().body(customerUpdate);
     }
 
-    @GetMapping("{/id}")
+    @GetMapping("/{id}")
     public ResponseEntity<CustomerResponse> getCustomer(
             @PathVariable Long id
     ) {
@@ -61,24 +74,32 @@ public class CustomerController {
     }
 
     @GetMapping("/filter")
-    @PageableDefault(size = 20)
     public Page<CustomerResponse> findAll(
-            CustomerFilterRequest filter,
-            Pageable pageable
+            @RequestParam(required = false) String name,
+            @RequestParam(required = false) CustomerStatus status,
+            @RequestParam(required = false) String title,
+
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "20") int size,
+            @RequestParam(defaultValue = "id,asc") String sort
     ) {
-        if (pageable.getPageSize()>100){
-            throw new PageSizeException("Page size is greater than 100");
-        }
-        return customerService.findAllFilter(
-                filter,
-                pageable
+        CustomerFilterRequest filter =
+                new CustomerFilterRequest(name, status, title);
+
+        String[] sortParts = sort.split(",");
+
+        Sort.Direction direction =
+                sortParts.length > 1
+                        ? Sort.Direction.fromString(sortParts[1])
+                        : Sort.Direction.ASC;
+
+        Pageable pageable = PageRequest.of(
+                page,
+                size,
+                Sort.by(direction, sortParts[0])
         );
-    }
-    @GetMapping("/page2")
-    public ResponseEntity<Page<CustomerListResponse>> findAllPage(
-            CustomerFilterRequest request,
-            Pageable pageable) {
-return ResponseEntity.ok(customerService.findAllWithCustomerByPage(pageable));
+
+        return customerService.findAllFilter(filter, pageable);
     }
 @GetMapping("/page3")
 public ResponseEntity<List<CustomerWithDealsResponse>> findAllPage2(
@@ -86,12 +107,12 @@ public ResponseEntity<List<CustomerWithDealsResponse>> findAllPage2(
         Pageable pageable){
         return ResponseEntity.ok(customerService.findAll(pageable));
 }
-    @DeleteMapping("{/id}")
+    @DeleteMapping("/{id}")
     public ResponseEntity<CustomerResponse> deleteCustomer(
             @PathVariable Long id
     ) {
         customerService.deleteCustomer(id);
         return ResponseEntity.noContent().build();
     }
-
 }
+

@@ -22,7 +22,7 @@ left join fetch d.customer
     @Query("select d from Deal  d")
     List<Deal>findAllWithCustomerByGraph();
 
-    Page<Deal> findAllWithCustomer(Pageable pageable);
+  //  Page<Deal> findAllWithCustomer(Pageable pageable);
     @Query("""
 SELECT new com.example.demo.dto.deal.DealListResponse(
 d.title,

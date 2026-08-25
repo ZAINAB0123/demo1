@@ -5,6 +5,8 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
 import jakarta.validation.constraints.Size;
 
+import java.math.BigDecimal;
+
 public record DealCreateRequest(
         @NotBlank(message = "Title is required")
         String title,
@@ -13,5 +15,5 @@ public record DealCreateRequest(
         String description,
         @NotNull
         @Positive(message = "Amount is required")
-        Double amount) {
+        BigDecimal amount) {
 }
