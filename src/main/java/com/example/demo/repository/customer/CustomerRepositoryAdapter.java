@@ -1,9 +1,7 @@
-package com.example.demo;
+package com.example.demo.repository.customer;
 
 import com.example.demo.dto.customer.CustomerFilterRequest;
 import com.example.demo.entity.Customer;
-import com.example.demo.repository.CustomerJpaRepository;
-import com.example.demo.repository.CustomerRepository;
 import com.example.demo.specification.CustomerSpecification;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;

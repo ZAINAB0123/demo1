@@ -4,7 +4,7 @@ import com.example.demo.dto.deal.*;
 import com.example.demo.entity.Deal;
 import com.example.demo.exception.DealNotFoundException;
 import com.example.demo.mapper.DealMapper;
-import com.example.demo.repository.DealRepository;
+import com.example.demo.repository.deal.DealRepository;
 import lombok.RequiredArgsConstructor;
 
 import org.springframework.data.domain.Page;

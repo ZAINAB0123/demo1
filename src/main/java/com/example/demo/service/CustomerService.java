@@ -4,13 +4,14 @@ import com.example.demo.dto.customer.*;
 import com.example.demo.entity.Customer;
 import com.example.demo.exception.CustomerNotFoundException;
 import com.example.demo.mapper.CustomerMapper;
-import com.example.demo.repository.CustomerRepository;
+import com.example.demo.repository.customer.CustomerRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
 
@@ -28,8 +29,8 @@ public class CustomerService {
     }
 
     @Transactional
-    public CustomerResponse updateCustomer(CustomerUpdateRequest request){
-        Customer customer = customerRepository.findById(request.id()).orElseThrow(() ->
+    public CustomerResponse updateCustomer(Long id, CustomerUpdateRequest request){
+        Customer customer = customerRepository.findById(id).orElseThrow(() ->
                 new CustomerNotFoundException("Customer not found"));
         customer.setName(request.name());
         return customerMapper.toResponse(customer);

@@ -1,4 +1,4 @@
-package com.example.demo.repository;
+package com.example.demo.repository.deal;
 
 import com.example.demo.dto.deal.DealListResponse;
 import com.example.demo.entity.Deal;
@@ -11,7 +11,7 @@ import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
 
-public interface DealRepository extends JpaRepository<Deal, Long>, JpaSpecificationExecutor<Deal> {
+public interface DealJpaRepository extends JpaRepository<Deal, Long>, JpaSpecificationExecutor<Deal> {
     @Query("""
 select d
 from Deal d
@@ -22,7 +22,7 @@ left join fetch d.customer
     @Query("select d from Deal  d")
     List<Deal>findAllWithCustomerByGraph();
 
-  //  Page<Deal> findAllWithCustomer(Pageable pageable);
+    //  Page<Deal> findAllWithCustomer(Pageable pageable);
     @Query("""
 SELECT new com.example.demo.dto.deal.DealListResponse(
 d.title,
@@ -32,5 +32,6 @@ c.name
 from Deal d
 join d.customer c
 """)
-    Page<DealListResponse>dealListResponseWithCustomer(Pageable pageable);
+    Page<DealListResponse> dealListResponseWithCustomer(Pageable pageable);
+
 }
