@@ -1,8 +1,10 @@
 package com.example.demo.dto.deal;
 
+import java.math.BigDecimal;
+
 public record DealListResponse(
        String title,
-       Double amount,
+       BigDecimal amount,
        String customerName
 ) {
 }

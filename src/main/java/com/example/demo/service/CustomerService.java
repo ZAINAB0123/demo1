@@ -4,16 +4,14 @@ import com.example.demo.dto.customer.*;
 import com.example.demo.entity.Customer;
 import com.example.demo.exception.CustomerNotFoundException;
 import com.example.demo.mapper.CustomerMapper;
-import com.example.demo.mapper.DealMapper;
-import com.example.demo.repository.CustomerRepository;
-import com.example.demo.specification.CustomerSpecification;
+import com.example.demo.repository.customer.CustomerRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
 
@@ -22,7 +20,6 @@ import java.util.List;
 public class CustomerService {
     private final CustomerRepository customerRepository;
     private final CustomerMapper customerMapper;
-    private final DealMapper dealMapper;
 
     @Transactional
     public CustomerResponse createCustomer(CustomerCreateRequest request) {
@@ -60,11 +57,6 @@ public class CustomerService {
       return customerMapper.toCustomerWithDealsResponse(customerRepository.findAllWithDealsByGraph());
     }
 
-    @Transactional(readOnly = true)
-    public Page<CustomerListResponse>findAllWithCustomerByPage(Pageable pageable){
-        return customerRepository.findAllWithDealsByCustomerPage(pageable);
-    }
-
     @Transactional(readOnly = true, propagation = Propagation.MANDATORY )  // MANDATORY- требует существующую транзакцию
     public List<CustomerWithDealsResponse> findAll(Pageable pageable) {
         Page<Long> page = customerRepository.findCustomerIds(pageable);
@@ -78,8 +70,7 @@ public class CustomerService {
             CustomerFilterRequest filter,
             Pageable pageable
     ){
-      Specification<Customer> spec =  CustomerSpecification.getSpecification(filter);
-Page<Customer> page = customerRepository.findAll(spec, pageable);
+Page<Customer> page = customerRepository.findAll(filter, pageable);
 return  page.map(customerMapper::toResponse);
     }
 

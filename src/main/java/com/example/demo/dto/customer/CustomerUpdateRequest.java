@@ -1,6 +1,7 @@
 package com.example.demo.dto.customer;
 
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 public record CustomerUpdateRequest(
         @NotBlank(message = "Name is required")

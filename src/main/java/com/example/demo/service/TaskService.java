@@ -4,7 +4,7 @@ import com.example.demo.dto.task.*;
 import com.example.demo.entity.Task;
 import com.example.demo.exception.TaskNotFoundException;
 import com.example.demo.mapper.TaskMapper;
-import com.example.demo.repository.TaskRepository;
+import com.example.demo.repository.task.TaskRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

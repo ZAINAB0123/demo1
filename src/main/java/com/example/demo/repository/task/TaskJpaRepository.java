@@ -1,4 +1,4 @@
-package com.example.demo.repository;
+package com.example.demo.repository.task;
 
 import com.example.demo.dto.task.TaskListResponse;
 import com.example.demo.entity.Task;
@@ -11,7 +11,7 @@ import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
 
-public interface TaskRepository extends JpaRepository<Task, Long>, JpaSpecificationExecutor<Task> {
+public interface TaskJpaRepository extends JpaRepository<Task, Long>, JpaSpecificationExecutor<Task> {
     @Query("""
 SELECT t
 from Task  t

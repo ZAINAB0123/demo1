@@ -5,6 +5,7 @@ import com.example.demo.dto.task.TaskResponse;
 import com.example.demo.dto.task.TaskWithCustomerResponse;
 import com.example.demo.dto.task.TaskUpdateRequest;
 import com.example.demo.service.TaskService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -26,7 +27,7 @@ public class TaskController {
     @PutMapping("/{id}")
     public ResponseEntity<TaskResponse> updateTask(
             @PathVariable Long id,
-            @RequestBody TaskUpdateRequest request
+          @Valid @RequestBody TaskUpdateRequest request
     ){
         TaskResponse taskUpdate = taskService.updateTask(id, request);
         return ResponseEntity.ok(taskUpdate);
