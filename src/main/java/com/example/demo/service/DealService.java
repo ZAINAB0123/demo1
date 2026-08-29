@@ -44,18 +44,22 @@ public class DealService {
                 new DealNotFoundException("Deal not found"));
         return dealMapper.toResponse(deal);
     }
-@Transactional(readOnly = true)
-public List<DealResponse> findAllDeals() {
-return dealMapper.toResponseList(dealRepository.findAll());
-}
-@Transactional(readOnly = true)
-public List<DealWithCustomerResponse> findAllDealsList() {
-return dealMapper.toResponseFetchList(dealRepository.findAllWithCustomer());
-}
-@Transactional(readOnly = true)
-public List<DealWithCustomerResponse>getAllDealsGraph() {
+
+    @Transactional(readOnly = true)
+    public List<DealResponse> findAllDeals() {
+        return dealMapper.toResponseList(dealRepository.findAll());
+    }
+
+    @Transactional(readOnly = true)
+    public List<DealWithCustomerResponse> findAllDealsList() {
+        return dealMapper.toResponseFetchList(dealRepository.findAllWithCustomer());
+    }
+
+    @Transactional(readOnly = true)
+    public List<DealWithCustomerResponse> getAllDealsGraph() {
         return dealMapper.toResponseFetchList(dealRepository.findAllWithCustomerByGraph());
-}
+    }
+
     @Transactional(readOnly = true)
     public Page<DealListResponse> getDealsPage(Pageable pageable) {
         return dealRepository.dealListResponseWithCustomer(pageable);

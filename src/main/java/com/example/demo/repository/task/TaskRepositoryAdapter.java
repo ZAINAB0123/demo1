@@ -1,10 +1,12 @@
 package com.example.demo.repository.task;
+
 import com.example.demo.dto.task.TaskListResponse;
 import com.example.demo.entity.Task;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
+
 import java.util.List;
 import java.util.Optional;
 
@@ -13,6 +15,7 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class TaskRepositoryAdapter implements TaskRepository {
     private final TaskJpaRepository repository;
+
     @Override
     public List<Task> findAll() {
         return repository.findAll();

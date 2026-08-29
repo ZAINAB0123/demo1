@@ -22,8 +22,8 @@ public class CustomerSpecification {
             if (StringUtils.hasText(request.name())) {
                 predicate = cb.and(
                         predicate,
-                        cb.like(  cb.lower(
-                                root.get("name")),
+                        cb.like(cb.lower(
+                                        root.get("name")),
                                 "%" + request.name().toLowerCase() + "%"
                         )
                 );
@@ -48,7 +48,7 @@ public class CustomerSpecification {
                         predicate,
                         cb.like(
                                 cb.lower(
-                                deal.get("title")),
+                                        deal.get("title")),
                                 "%" + request.title().toLowerCase() + "%"
                         )
                 );

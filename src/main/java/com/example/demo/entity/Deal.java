@@ -13,7 +13,7 @@ import java.math.BigDecimal;
 @Getter
 @Setter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class Deal extends BaseEntity{
+public class Deal extends BaseEntity {
     @Column(nullable = false, length = 100)
     private String title;
     @Column(columnDefinition = "TEXT")
@@ -25,6 +25,7 @@ public class Deal extends BaseEntity{
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "customer_id", nullable = false)
     private Customer customer;
+
     public Deal(String title, String description, BigDecimal amount) {
         this.title = title;
         this.description = description;

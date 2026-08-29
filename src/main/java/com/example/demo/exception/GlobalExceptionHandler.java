@@ -10,9 +10,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+
 import java.time.Instant;
 import java.util.List;
-
 
 
 @Slf4j
@@ -76,11 +76,12 @@ public class GlobalExceptionHandler {
                 request
         );
     }
-@ExceptionHandler(DataIntegrityViolationException.class)
-public ResponseEntity<ErrorResponse> dataIntegrityViolationException(
-        DataIntegrityViolationException e,
-        HttpServletRequest request
-){
+
+    @ExceptionHandler(DataIntegrityViolationException.class)
+    public ResponseEntity<ErrorResponse> dataIntegrityViolationException(
+            DataIntegrityViolationException e,
+            HttpServletRequest request
+    ) {
         log.warn(" Validation failed for request: {}", request.getRequestURI());
         return buildError(
                 "DATA_INTEGRITY_VIOLATION",
@@ -89,7 +90,8 @@ public ResponseEntity<ErrorResponse> dataIntegrityViolationException(
                 HttpStatus.CONFLICT,
                 request
         );
-}
+    }
+
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<ErrorResponse> methodArgumentNotValidException(
             MethodArgumentNotValidException e,

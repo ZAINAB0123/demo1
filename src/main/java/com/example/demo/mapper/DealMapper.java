@@ -12,14 +12,15 @@ import java.util.List;
 @Component
 public class DealMapper {
 
-    public Deal toEntity(DealCreateRequest request){
+    public Deal toEntity(DealCreateRequest request) {
         return new Deal(
                 request.title(),
                 request.description(),
                 request.amount()
         );
     }
-    public DealResponse toResponse(Deal deal){
+
+    public DealResponse toResponse(Deal deal) {
         return new DealResponse(
                 deal.getId(),
                 deal.getTitle(),
@@ -30,23 +31,26 @@ public class DealMapper {
                 deal.getVersion()
         );
     }
-    public List<DealResponse> toResponseList(List<Deal> deals){
-        List<DealResponse> dealList=new ArrayList<>();
-        for (Deal deal1: deals){
+
+    public List<DealResponse> toResponseList(List<Deal> deals) {
+        List<DealResponse> dealList = new ArrayList<>();
+        for (Deal deal1 : deals) {
             dealList.add(toResponse(deal1));
         }
         return dealList;
     }
-    public DealWithCustomerResponse toDealWithCustomerResponse(Deal deal){
+
+    public DealWithCustomerResponse toDealWithCustomerResponse(Deal deal) {
         return new DealWithCustomerResponse(
                 deal.getId(),
                 deal.getTitle(),
                 deal.getCustomer().getName()
         );
     }
-    public List<DealWithCustomerResponse> toResponseFetchList(List<Deal> deals){
-        List<DealWithCustomerResponse> dealList=new ArrayList<>();
-        for (Deal deal: deals) {
+
+    public List<DealWithCustomerResponse> toResponseFetchList(List<Deal> deals) {
+        List<DealWithCustomerResponse> dealList = new ArrayList<>();
+        for (Deal deal : deals) {
             dealList.add(toDealWithCustomerResponse(deal));
         }
         return dealList;

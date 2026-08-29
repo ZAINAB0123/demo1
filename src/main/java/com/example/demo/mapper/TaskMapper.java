@@ -12,11 +12,12 @@ import java.util.List;
 @Component
 public class TaskMapper {
     public Task toEntity(TaskCreateRequest request) {
-      return new Task(
-              request.title(),
-              request.description()
-      );
+        return new Task(
+                request.title(),
+                request.description()
+        );
     }
+
     public TaskResponse toResponse(Task task) {
         return new TaskResponse(
                 task.getId(),
@@ -27,6 +28,7 @@ public class TaskMapper {
                 task.getVersion()
         );
     }
+
     public List<TaskResponse> toResponseList(List<Task> tasks) {
         List<TaskResponse> responseList = new ArrayList<>();
         for (Task task : tasks) {
@@ -34,6 +36,7 @@ public class TaskMapper {
         }
         return responseList;
     }
+
     public TaskWithCustomerResponse toResponse2(Task task) {
         return new TaskWithCustomerResponse(
                 task.getId(),
@@ -41,9 +44,10 @@ public class TaskMapper {
                 task.getCustomer().getName()
         );
     }
+
     public List<TaskWithCustomerResponse> toResponseList2(List<Task> tasks) {
         List<TaskWithCustomerResponse> responseList = new ArrayList<>();
-        for (Task task: tasks){
+        for (Task task : tasks) {
             responseList.add(toResponse2(task));
         }
         return responseList;
