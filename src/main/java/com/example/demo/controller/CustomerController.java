@@ -102,12 +102,14 @@ public class CustomerController {
 
         return customerService.findAllFilter(filter, pageable);
     }
-@GetMapping("/page3")
-public ResponseEntity<List<CustomerWithDealsResponse>> findAllPage2(
-        CustomerFilterRequest request,
-        Pageable pageable){
+
+    @GetMapping("/page3")
+    public ResponseEntity<List<CustomerWithDealsResponse>> findAllPage2(
+            CustomerFilterRequest request,
+            Pageable pageable) {
         return ResponseEntity.ok(customerService.findAll(pageable));
-}
+    }
+
     @DeleteMapping("/{id}")
     public ResponseEntity<CustomerResponse> deleteCustomer(
             @PathVariable Long id

@@ -24,12 +24,12 @@ public class CustomerService {
     @Transactional
     public CustomerResponse createCustomer(CustomerCreateRequest request) {
         Customer customer = customerMapper.toEntity(request);
-       Customer customerSaved = customerRepository.save(customer);
-       return customerMapper.toResponse(customerSaved);
+        Customer customerSaved = customerRepository.save(customer);
+        return customerMapper.toResponse(customerSaved);
     }
 
     @Transactional
-    public CustomerResponse updateCustomer(Long id, CustomerUpdateRequest request){
+    public CustomerResponse updateCustomer(Long id, CustomerUpdateRequest request) {
         Customer customer = customerRepository.findById(id).orElseThrow(() ->
                 new CustomerNotFoundException("Customer not found"));
         customer.setName(request.name());
@@ -37,27 +37,27 @@ public class CustomerService {
     }
 
     @Transactional(readOnly = true)
-    public CustomerResponse getCustomerById(Long id){
+    public CustomerResponse getCustomerById(Long id) {
         return customerMapper.toResponse(customerRepository.findById(id).orElseThrow(() ->
                 new CustomerNotFoundException("Customer not found")));
     }
 
     @Transactional(readOnly = true)
-    public List<CustomerResponse> findAll(){
-      return customerMapper.toResponseList(customerRepository.findAll());
+    public List<CustomerResponse> findAll() {
+        return customerMapper.toResponseList(customerRepository.findAll());
     }
 
     @Transactional(readOnly = true)
-    public List<CustomerWithDealsResponse> findAllFetch(){
+    public List<CustomerWithDealsResponse> findAllFetch() {
         return customerMapper.toCustomerWithDealsResponse(customerRepository.findAllWithDeals());
     }
 
     @Transactional(readOnly = true)
-    public List<CustomerWithDealsResponse>findAllGraph(){
-      return customerMapper.toCustomerWithDealsResponse(customerRepository.findAllWithDealsByGraph());
+    public List<CustomerWithDealsResponse> findAllGraph() {
+        return customerMapper.toCustomerWithDealsResponse(customerRepository.findAllWithDealsByGraph());
     }
 
-    @Transactional(readOnly = true, propagation = Propagation.MANDATORY )  // MANDATORY- требует существующую транзакцию
+    @Transactional(readOnly = true, propagation = Propagation.MANDATORY)  // MANDATORY- требует существующую транзакцию
     public List<CustomerWithDealsResponse> findAll(Pageable pageable) {
         Page<Long> page = customerRepository.findCustomerIds(pageable);
         List<Customer> customers =
@@ -69,15 +69,15 @@ public class CustomerService {
     public Page<CustomerResponse> findAllFilter(
             CustomerFilterRequest filter,
             Pageable pageable
-    ){
-Page<Customer> page = customerRepository.findAll(filter, pageable);
-return  page.map(customerMapper::toResponse);
+    ) {
+        Page<Customer> page = customerRepository.findAll(filter, pageable);
+        return page.map(customerMapper::toResponse);
     }
 
     @Transactional
-    public void deleteCustomer(Long id){
-       Customer customer = customerRepository.findById(id).orElseThrow(() ->
+    public void deleteCustomer(Long id) {
+        Customer customer = customerRepository.findById(id).orElseThrow(() ->
                 new CustomerNotFoundException("Customer not found"));
-       customerRepository.delete(customer);
+        customerRepository.delete(customer);
     }
 }

@@ -10,8 +10,8 @@ import lombok.Setter;
 @Table(name = "tasks")
 @Getter
 @Setter
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class Task extends BaseEntity{
+@NoArgsConstructor()
+public class Task extends BaseEntity {
     @Column(nullable = false, length = 255)
     private String title;
     @Column(columnDefinition = "TEXT")
@@ -21,11 +21,12 @@ public class Task extends BaseEntity{
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "customer_id", nullable = false)
     private Customer customer;
-public Task(String title, String description){
-    this.title = title;
-    this.description = description;
-    this.status = TaskStatus.NEW;
-}
+
+    public Task(String title, String description) {
+        this.title = title;
+        this.description = description;
+        this.status = TaskStatus.NEW;
+    }
 
 
 }

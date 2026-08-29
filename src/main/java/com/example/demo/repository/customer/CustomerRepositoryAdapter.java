@@ -28,14 +28,17 @@ public class CustomerRepositoryAdapter
     public Optional<Customer> findById(Long id) {
         return repository.findById(id);
     }
+
     @Override
     public List<Customer> findAll() {
         return repository.findAll();
     }
+
     @Override
     public void delete(Customer customer) {
         repository.delete(customer);
     }
+
     @Override
     public List<Customer> findAllWithDeals() {
         return repository.findAllWithDeals();

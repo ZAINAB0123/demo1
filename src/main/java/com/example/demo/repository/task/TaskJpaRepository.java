@@ -13,23 +13,24 @@ import java.util.List;
 
 public interface TaskJpaRepository extends JpaRepository<Task, Long>, JpaSpecificationExecutor<Task> {
     @Query("""
-SELECT t
-from Task  t
-join fetch t.customer
-""")
+            SELECT t
+            from Task  t
+            join fetch t.customer
+            """)
     List<Task> findAllWithCustomerFetch();
 
     @EntityGraph(attributePaths = "customer")
     @Query("select t from Task t")
     List<Task> findAllWithTaskGraph();
+
     @Query("""
-select new com.example.demo.dto.task.TaskListResponse(
-t.title,
-c.name
-)
-from Task t
-join t.customer c
-""")
+            select new com.example.demo.dto.task.TaskListResponse(
+            t.title,
+            c.name
+            )
+            from Task t
+            join t.customer c
+            """)
     Page<TaskListResponse> getTaskListPage(Pageable pageable);
 
 }

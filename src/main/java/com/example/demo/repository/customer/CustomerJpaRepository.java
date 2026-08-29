@@ -43,6 +43,7 @@ public interface CustomerJpaRepository extends JpaRepository<Customer, Long>,
     List<Customer> findAllWithDealsByIds(
             @Param("ids") List<Long> ids
     );
+
     // встроен в JpaSpecificationExecutor(не нужно писать)
     Page<Customer> findAll(
             Specification<Customer> spec,
