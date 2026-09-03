@@ -12,7 +12,7 @@ import java.math.BigDecimal;
 @Table(name = "deals")
 @Getter
 @Setter
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@NoArgsConstructor()
 public class Deal extends BaseEntity {
     @Column(nullable = false, length = 100)
     private String title;
