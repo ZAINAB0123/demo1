@@ -1,5 +1,5 @@
 package com.example.demo.dto.deal;
-import com.example.demo.entity.DealStatus;
+import com.example.demo.entity.deal.DealStatus;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;

@@ -194,3 +194,111 @@ databaseChangeLog:
             referencedTableName: customers
             referencedColumnNames: id
             constraintName: fk_deals_customer
+
+  - changeSet:
+      id: 006-create-users
+      author: zainab
+      changes:
+        - createTable:
+            tableName: users
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+
+              - column:
+                  name: created_at
+                  type: TIMESTAMP
+                  defaultValueComputed: CURRENT_TIMESTAMP
+                  constraints:
+                    nullable: false
+
+              - column:
+                  name: updated_at
+                  type: TIMESTAMP
+                  constraints:
+                    nullable: false
+
+              - column:
+                  name: version
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+
+              - column:
+                  name: name
+                  type: VARCHAR(50)
+                  constraints:
+                    nullable: false
+
+              - column:
+                  name: email
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: false
+                    unique: true
+
+              - column:
+                  name: phone
+                  type: VARCHAR(20)
+                  constraints:
+                    nullable: false
+
+              - column:
+                  name: password
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: false
+
+              - column:
+                  name: status
+                  type: VARCHAR(20)
+                  constraints:
+                    nullable: false
+
+              - column:
+                  name: role
+                  type: VARCHAR(20)
+                  constraints:
+                    nullable: false
+
+  - changeSet:
+      id: 007-add-task-user-fk
+      author: zainab
+      changes:
+        - addColumn:
+            tableName: tasks
+            columns:
+              - column:
+                  name: user_id
+                  type: BIGINT
+
+        - addForeignKeyConstraint:
+            baseTableName: tasks
+            baseColumnNames: user_id
+            referencedTableName: users
+            referencedColumnNames: id
+            constraintName: fk_tasks_user
+
+
+  - changeSet:
+      id: 008-add-deal-user-fk
+      author: zainab
+      changes:
+        - addColumn:
+            tableName: deals
+            columns:
+              - column:
+                  name: user_id
+                  type: BIGINT
+
+        - addForeignKeyConstraint:
+            baseTableName: deals
+            baseColumnNames: user_id
+            referencedTableName: users
+            referencedColumnNames: id
+            constraintName: fk_deals_user

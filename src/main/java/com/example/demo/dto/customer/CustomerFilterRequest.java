@@ -1,5 +1,5 @@
 package com.example.demo.dto.customer;
-import com.example.demo.entity.CustomerStatus;
+import com.example.demo.entity.customer.CustomerStatus;
 
 
 public record CustomerFilterRequest(

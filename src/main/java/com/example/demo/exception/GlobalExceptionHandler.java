@@ -77,6 +77,51 @@ public class GlobalExceptionHandler {
         );
     }
 
+    @ExceptionHandler(UserNotFoundException.class)
+    public ResponseEntity<ErrorResponse> userNotFoundException(
+            UserNotFoundException e,
+            HttpServletRequest request
+    ) {
+        log.warn(" User not found {}", e.getMessage());
+        return buildError(
+                "USER_NOT_FOUND",
+                e.getMessage(),
+                List.of(),
+                HttpStatus.NOT_FOUND,
+                request
+        );
+    }
+
+    @ExceptionHandler(InvalidPasswordException.class)
+    public ResponseEntity<ErrorResponse> invalidPasswordException(
+            InvalidPasswordException e,
+            HttpServletRequest request
+    ) {
+        log.warn(" Invalid password {}", e.getMessage());
+        return buildError(
+                "INVALID_PASSWORD",
+                e.getMessage(),
+                List.of(),
+                HttpStatus.UNAUTHORIZED,
+                request
+        );
+    }
+
+    @ExceptionHandler(UserAlreadyExistsException.class)
+    public ResponseEntity<ErrorResponse> userAlreadyExistsException(
+            UserAlreadyExistsException e,
+            HttpServletRequest request
+    ) {
+        log.warn(" UserAlreadyExists {}", e.getMessage());
+        return buildError(
+                "USER_ALREADY_EXISTS",
+                e.getMessage(),
+                List.of(),
+                HttpStatus.CONFLICT,
+                request
+        );
+    }
+
     @ExceptionHandler(DataIntegrityViolationException.class)
     public ResponseEntity<ErrorResponse> dataIntegrityViolationException(
             DataIntegrityViolationException e,
@@ -90,6 +135,20 @@ public class GlobalExceptionHandler {
                 HttpStatus.CONFLICT,
                 request
         );
+    }
+
+    @ExceptionHandler(ValidationException.class)
+    public ResponseEntity<ErrorResponse> validationException(
+            ValidationException e,
+            HttpServletRequest request
+    ) {
+        log.warn(" Validation failed {}", e.getMessage());
+        return buildError(
+                "VALIDATION_ERROR",
+                "Validation failed",
+                e.getErrors(),
+                HttpStatus.BAD_REQUEST,
+                request);
     }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)

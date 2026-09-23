@@ -1,7 +1,7 @@
 package com.example.demo.service;
 
 import com.example.demo.dto.deal.*;
-import com.example.demo.entity.Deal;
+import com.example.demo.entity.deal.Deal;
 import com.example.demo.exception.DealNotFoundException;
 import com.example.demo.mapper.DealMapper;
 import com.example.demo.repository.deal.DealRepository;

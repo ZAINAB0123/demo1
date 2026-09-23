@@ -3,7 +3,7 @@ package com.example.demo.mapper;
 import com.example.demo.dto.task.TaskCreateRequest;
 import com.example.demo.dto.task.TaskResponse;
 import com.example.demo.dto.task.TaskWithCustomerResponse;
-import com.example.demo.entity.Task;
+import com.example.demo.entity.task.Task;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
