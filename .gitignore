@@ -38,3 +38,5 @@ out/
 ### Project secrets ###
 .env
 /secrets/
+### Local configuration ###
+src/main/resources/application-dev.properties
