@@ -7,8 +7,10 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.JdbcTypeCode;
 
 import java.math.BigDecimal;
+import java.sql.Types;
 
 @Entity
 @Table(name = "deals")
@@ -18,7 +20,7 @@ import java.math.BigDecimal;
 public class Deal extends BaseEntity {
     @Column(nullable = false, length = 100)
     private String title;
-    @Lob
+    @JdbcTypeCode(Types.LONGVARCHAR)
     private String description;
     @Column(nullable = false, precision = 19, scale = 2)
     private BigDecimal amount;

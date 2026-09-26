@@ -7,6 +7,9 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.JdbcTypeCode;
+
+import java.sql.Types;
 
 @Entity
 @Table(name = "tasks")
@@ -16,7 +19,7 @@ import lombok.Setter;
 public class Task extends BaseEntity {
     @Column(nullable = false, length = 255)
     private String title;
-    @Lob
+    @JdbcTypeCode(Types.LONGVARCHAR)
     private String description;
     @Enumerated(EnumType.STRING)
     private TaskStatus status;
