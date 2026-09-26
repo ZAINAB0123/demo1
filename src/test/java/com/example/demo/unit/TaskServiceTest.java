@@ -1,7 +1,7 @@
 package com.example.demo.unit;
 
 import com.example.demo.dto.task.*;
-import com.example.demo.entity.Task;
+import com.example.demo.entity.task.Task;
 import com.example.demo.exception.TaskNotFoundException;
 import com.example.demo.mapper.TaskMapper;
 import com.example.demo.repository.task.TaskRepository;

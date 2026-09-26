@@ -1,7 +1,9 @@
-package com.example.demo.entity;
+package com.example.demo.entity.deal;
 
+import com.example.demo.entity.BaseEntity;
+import com.example.demo.entity.customer.Customer;
+import com.example.demo.entity.user.User;
 import jakarta.persistence.*;
-import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -16,7 +18,7 @@ import java.math.BigDecimal;
 public class Deal extends BaseEntity {
     @Column(nullable = false, length = 100)
     private String title;
-    @Column(columnDefinition = "TEXT")
+    @Lob
     private String description;
     @Column(nullable = false, precision = 19, scale = 2)
     private BigDecimal amount;
@@ -25,6 +27,9 @@ public class Deal extends BaseEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "customer_id", nullable = false)
     private Customer customer;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id", nullable = false)
+    private User user;
 
     public Deal(String title, String description, BigDecimal amount) {
         this.title = title;

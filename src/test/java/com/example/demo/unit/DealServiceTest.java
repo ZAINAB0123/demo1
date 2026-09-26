@@ -2,7 +2,7 @@ package com.example.demo.unit;
 
 import com.example.demo.dto.deal.DealCreateRequest;
 import com.example.demo.dto.deal.DealResponse;
-import com.example.demo.entity.Deal;
+import com.example.demo.entity.deal.Deal;
 import com.example.demo.mapper.DealMapper;
 import com.example.demo.repository.deal.DealRepository;
 import com.example.demo.service.DealService;
@@ -40,3 +40,4 @@ public class DealServiceTest {
         assertSame(response, result);
     }
 }
+

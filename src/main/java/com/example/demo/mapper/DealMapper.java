@@ -3,7 +3,7 @@ package com.example.demo.mapper;
 import com.example.demo.dto.deal.DealCreateRequest;
 import com.example.demo.dto.deal.DealWithCustomerResponse;
 import com.example.demo.dto.deal.DealResponse;
-import com.example.demo.entity.Deal;
+import com.example.demo.entity.deal.Deal;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;

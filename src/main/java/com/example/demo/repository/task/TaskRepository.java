@@ -1,7 +1,7 @@
 package com.example.demo.repository.task;
 
 import com.example.demo.dto.task.TaskListResponse;
-import com.example.demo.entity.Task;
+import com.example.demo.entity.task.Task;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 

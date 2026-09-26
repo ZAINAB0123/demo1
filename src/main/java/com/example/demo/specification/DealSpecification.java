@@ -1,8 +1,8 @@
 package com.example.demo.specification;
 
 import com.example.demo.dto.deal.DealFilterRequest;
-import com.example.demo.entity.Customer;
-import com.example.demo.entity.Deal;
+import com.example.demo.entity.customer.Customer;
+import com.example.demo.entity.deal.Deal;
 import jakarta.persistence.criteria.Join;
 import jakarta.persistence.criteria.Predicate;
 

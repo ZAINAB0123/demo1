@@ -1,6 +1,6 @@
 package com.example.demo.repository.customer;
 
-import com.example.demo.entity.Customer;
+import com.example.demo.entity.customer.Customer;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;

@@ -1,6 +1,6 @@
 package com.example.demo.dto.task;
 
-import com.example.demo.entity.TaskStatus;
+import com.example.demo.entity.task.TaskStatus;
 
 import java.time.LocalDateTime;
 

@@ -1,8 +1,7 @@
 package com.example.demo.repository.deal;
 
-import com.example.demo.dto.deal.DealFilterRequest;
 import com.example.demo.dto.deal.DealListResponse;
-import com.example.demo.entity.Deal;
+import com.example.demo.entity.deal.Deal;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.EntityGraph;

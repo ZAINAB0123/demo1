@@ -1,7 +1,7 @@
 package com.example.demo.specification;
 
 import com.example.demo.dto.task.TaskFilterRequest;
-import com.example.demo.entity.Task;
+import com.example.demo.entity.task.Task;
 import org.springframework.data.jpa.domain.Specification;
 
 public class TaskSpecification {

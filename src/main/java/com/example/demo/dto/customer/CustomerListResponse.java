@@ -1,6 +1,6 @@
 package com.example.demo.dto.customer;
 
-import com.example.demo.entity.Deal;
+import com.example.demo.entity.deal.Deal;
 
 import java.util.List;
 

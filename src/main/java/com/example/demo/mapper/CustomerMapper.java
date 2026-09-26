@@ -1,7 +1,7 @@
 package com.example.demo.mapper;
 
 import com.example.demo.dto.customer.*;
-import com.example.demo.entity.Customer;
+import com.example.demo.entity.customer.Customer;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;

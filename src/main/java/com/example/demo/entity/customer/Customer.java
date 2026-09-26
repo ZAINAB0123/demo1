@@ -1,5 +1,8 @@
-package com.example.demo.entity;
+package com.example.demo.entity.customer;
 
+import com.example.demo.entity.BaseEntity;
+import com.example.demo.entity.deal.Deal;
+import com.example.demo.entity.task.Task;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -46,6 +49,16 @@ public class Customer extends BaseEntity {
     public void removeDeal(Deal deal) {
         this.deals.remove(deal);
         deal.setCustomer(null);
+    }
+    public void addTask(Task task) {
+        this.tasks.add(task);
+        task.setCustomer(this);
+
+    }
+
+    public void removeTask(Task task) {
+        this.deals.remove(task);
+        task.setCustomer(null);
     }
  /*   public void updateName(String name) {
         this.name = name;

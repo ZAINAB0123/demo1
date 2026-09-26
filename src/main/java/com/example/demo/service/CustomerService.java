@@ -1,7 +1,7 @@
 package com.example.demo.service;
 
 import com.example.demo.dto.customer.*;
-import com.example.demo.entity.Customer;
+import com.example.demo.entity.customer.Customer;
 import com.example.demo.exception.CustomerNotFoundException;
 import com.example.demo.mapper.CustomerMapper;
 import com.example.demo.repository.customer.CustomerRepository;
@@ -11,7 +11,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
 
