@@ -18,7 +18,7 @@ import java.math.BigDecimal;
 public class Deal extends BaseEntity {
     @Column(nullable = false, length = 100)
     private String title;
-    @Column(columnDefinition = "TEXT")
+    @Lob
     private String description;
     @Column(nullable = false, precision = 19, scale = 2)
     private BigDecimal amount;

@@ -16,7 +16,7 @@ import lombok.Setter;
 public class Task extends BaseEntity {
     @Column(nullable = false, length = 255)
     private String title;
-    @Column(columnDefinition = "TEXT")
+    @Lob
     private String description;
     @Enumerated(EnumType.STRING)
     private TaskStatus status;
